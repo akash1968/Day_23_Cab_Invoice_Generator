@@ -82,5 +82,19 @@ namespace NUnitTestProject
             // Asserting the comparison between the expected and actual invoice summary
             Assert.AreEqual(expectedInvoiceSummary, invoiceSummary);
         }
+        // TC.5-GeneratesInvoiceForRideType-Premium Ride
+        [Test]
+        public void GeneratesInvoiceForRideType()
+        {
+            double distance = 2.0;
+            int time = 5;
+            // Initializing the object with normal ride type
+            invoiceGenerator = new InvoiceGenerator(RideType.PREMIUM);
+            // Invoking the Calculate Fare method to get the total actual fare
+            double totalActualFare = invoiceGenerator.CalculateFare(distance, time);
+            double totalExpectedFare = 40.0;
+            // Asserting with the expected value
+            Assert.AreEqual(totalExpectedFare, totalActualFare);
+        }
     }
 }
