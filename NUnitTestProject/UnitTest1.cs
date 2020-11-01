@@ -1,6 +1,11 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Tests.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator Name="Akash Kumar Singh"/>
+// --------------------------------------------------------------------------------------------------------------------
 using NUnit.Framework;
 using Day_23_Cab_Invoice_Generator;
-
 namespace NUnitTestProject
 {
     public class Tests
@@ -20,6 +25,22 @@ namespace NUnitTestProject
             double totalExpectedFare = 55.0;
             // Asserting with the expected value
             Assert.AreEqual(totalExpectedFare, totalActualFare);
+        }
+        // TC.2- GivenMultipleRides_ShouldReturnInvoiceSummary
+        [Test]
+        public void GivenMultipleRides_ShouldReturnInvoiceSummary()
+        {
+            // Arrange
+            invoiceGenerator = new InvoiceGenerator(RideType.NORMAL);
+            Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1) };
+            // Act
+            InvoiceSummary invoiceSummary = invoiceGenerator.CalculateFare(rides);
+            // if both the objects are equal then get the same HashCode for both the objects
+            var resultHashCode = invoiceSummary.GetHashCode();
+            InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(30.0, 2);
+            var resulExpectedHashCode = expectedInvoiceSummary.GetHashCode();
+            // Assert
+            Assert.AreEqual(expectedInvoiceSummary, invoiceSummary);
         }
     }
 }

@@ -1,12 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RideType.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator Name="Akash Kumar Singh"/>
+// --------------------------------------------------------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Text;
-
 namespace Day_23_Cab_Invoice_Generator
 {
-        /// Added the feature for Premium Ride Types- UC 5
-        /// Differentiating between the Normal and the premium class
-        /// 0- Normal 1- Premium
+        // Differentiating between the Normal and the premium class 
         public enum RideType
         {
             NORMAL, PREMIUM
