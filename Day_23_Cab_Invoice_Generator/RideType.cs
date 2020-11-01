@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 namespace Day_23_Cab_Invoice_Generator
 {
-        // Differentiating between the Normal and the premium class 
+        // Differentiating between the Normal and the premium Ride Type 
         public enum RideType
         {
             NORMAL, PREMIUM
