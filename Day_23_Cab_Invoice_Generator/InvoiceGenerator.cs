@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="InvoiceGenerator.cs" company="Bridgelabz">
 //   Copyright © 2018 Company
 // </copyright>
@@ -106,9 +106,8 @@ namespace Day_23_Cab_Invoice_Generator
         public InvoiceSummary CalculateAvgFare(Ride[] rides)
         {
             double totalFare = 0;
-            /// Adding a variable to compute average fare
+            // Defining variable to compute average fare
             double averageFare = 0;
-            /// Exception handling for the invalid  distance and time
             try
             {
                 // Using foreach loop to take one ride each time
@@ -120,6 +119,7 @@ namespace Day_23_Cab_Invoice_Generator
                 // Computing average fare = (total fare/ number of rides)
                 averageFare = (totalFare / rides.Length);
             }
+            // Catching Exception for the invalid  distance and time
             catch (CabInvoiceException)
             {
                 if (rides == null)
@@ -127,7 +127,7 @@ namespace Day_23_Cab_Invoice_Generator
                     throw new CabInvoiceException(CabInvoiceException.ExceptionType.NULL_RIDES, "Rides passed are null..");
                 }
             }
-            // Returning the invoice summary with average fare too
+            // Returning the invoice summary with average fare 
             return new InvoiceSummary(totalFare, rides.Length, averageFare);
         }
         // Method to add the Customer info to the ride repository as a dictionary with key as UserID and value as ride history
@@ -157,7 +157,6 @@ namespace Day_23_Cab_Invoice_Generator
             {
                 // Calculating Average fare
                 double averageFare = (Convert.ToDouble(this.CalculateFare(rideRepository.GetRides(userID)))) / (rideRepository.GetRides(userID).Length);
-                // returning invoice summary
                 return new InvoiceSummary(Convert.ToDouble(this.CalculateFare(rideRepository.GetRides(userID))), rideRepository.GetRides(userID).Length, averageFare);
             }
             // Catching the custom exception of invalid user id
