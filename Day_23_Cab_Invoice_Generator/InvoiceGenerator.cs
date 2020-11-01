@@ -87,9 +87,8 @@ namespace Day_23_Cab_Invoice_Generator
         public InvoiceSummary CalculateAvgFare(Ride[] rides)
         {
             double totalFare = 0;
-            /// Adding a variable to compute average fare
+            // Defining variable to compute average fare
             double averageFare = 0;
-            /// Exception handling for the invalid  distance and time
             try
             {
                 // Using foreach loop to take one ride each time
@@ -101,6 +100,7 @@ namespace Day_23_Cab_Invoice_Generator
                 // Computing average fare = (total fare/ number of rides)
                 averageFare = (totalFare / rides.Length);
             }
+            // Catching Exception for the invalid  distance and time
             catch (CabInvoiceException)
             {
                 if (rides == null)
@@ -108,47 +108,40 @@ namespace Day_23_Cab_Invoice_Generator
                     throw new CabInvoiceException(CabInvoiceException.ExceptionType.NULL_RIDES, "Rides passed are null..");
                 }
             }
-            // Returning the invoice summary with average fare too
+            // Returning the invoice summary with average fare 
             return new InvoiceSummary(totalFare, rides.Length, averageFare);
         }
-        /// <summary>
-        /// Method to add the Customer info to the ride repository as a dictionary with key as UserID and value as ride history
-        /// </summary>
-        /// <param name="userID"></param>
-        /// <param name="rides"></param>
+        // Method to add the Customer info to the ride repository as a dictionary with key as UserID and value as ride history
         public void AddRides(string userID, Ride[] rides)
         {
-            /// Exception handling for null rides
-            /// While adding the data to the dictionary with use Id and ride history
+            // While adding the data to the dictionary with use Id and ride history
             try
             {
-                /// Calling the Add ride method of Ride Repository class
+                // Calling the Add ride method of Ride Repository class
                 rideRepository.AddRide(userID, rides);
             }
+            // Catching Exception  for null rides
             catch (CabInvoiceException)
             {
-                /// Returning the custom exception in case the rides are null
+                // Returning the custom exception in case the rides are null
                 if (rides == null)
                 {
                     throw new CabInvoiceException(CabInvoiceException.ExceptionType.NULL_RIDES, "Rides passed are null..");
                 }
             }
         }
-        /// <summary>
-        /// Method to return the invoice summary when passed with user ID
-        /// </summary>
-        /// <param name="userID"></param>
-        /// <returns></returns>
+        // Method to return the invoice summary when passed with user ID
         public InvoiceSummary GetInvoiceSummary(string userID)
         {
-            /// Handling the exception for the invalid user ID
-            /// Returning the Invoice Summary with the attributes of total fare, number of rides and average fare
+            // Returning the Invoice Summary with the attributes of total fare, number of rides and average fare
             try
             {
+                // Calculating Average fare
                 double averageFare = (Convert.ToDouble(this.CalculateFare(rideRepository.GetRides(userID)))) / (rideRepository.GetRides(userID).Length);
+               // returning invoice summary
                 return new InvoiceSummary(Convert.ToDouble(this.CalculateFare(rideRepository.GetRides(userID))), rideRepository.GetRides(userID).Length, averageFare);
             }
-            /// Catching the custom exception of invalid user id
+            // Catching the custom exception of invalid user id
             catch (CabInvoiceException)
             {
                 throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_USER_ID, "ID passed for User is Invalid");
